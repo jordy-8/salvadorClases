@@ -36,7 +36,7 @@ public class Item : MonoBehaviour
 
         // speed-up
         //other.GetComponent<Player>().speed += 0.1f;
-        other.GetComponent<Player>().ChangeSpeed(0.1f);
+        other.GetComponent<Player>().ChangeSpeed(1f);
 
     }
 

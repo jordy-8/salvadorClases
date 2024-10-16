@@ -4,10 +4,8 @@ using Unity.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
-    //public float speed;
-
-    float speed = 2;
+{    
+    float speed = 50;
 
     void Start()
     {
@@ -16,23 +14,25 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("speed= " + speed);
         MoveByRigidbody();        
     }
 
     void MoveByRigidbody()
     {
         // que se mueva a la derecha cuando aprieto la tecla d
-        if(Input.GetKeyDown("d"))
-        {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed,0);
+        if(Input.GetKey("d"))
+        {                    
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * Time.deltaTime, 0);            
         }
         // que se mueva a la izquierda cuando aprieto la tecla a
-        if(Input.GetKeyDown("a"))
-        {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed,0);
+        if(Input.GetKey("a"))
+        {            
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed * Time.deltaTime, 0);            
         }
         // que se deje de mover cuando suelto la tecla a
-         if(Input.GetKeyUp("d") || Input.GetKeyUp("a"))
+        if(Input.GetKeyUp("d") || Input.GetKeyUp("a"))
+        //if((Input.GetKeyUp("d") || Input.GetKeyUp("a")) && !(Input.GetKey("d") || Input.GetKey("a")))
         {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         }
