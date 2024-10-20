@@ -38,6 +38,9 @@ public class Item : MonoBehaviour
         //other.GetComponent<Player>().speed += 0.1f;
         other.GetComponent<Player>().ChangeSpeed(1f);
 
+
+        // sumar 1 a los items agarrados                
+        FindObjectOfType<GameManager>().scoreCounter += 1;
     }
 
     void MoveByTransform()

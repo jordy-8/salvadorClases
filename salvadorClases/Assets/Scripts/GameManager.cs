@@ -7,16 +7,17 @@ public class GameManager : MonoBehaviour
 {
     public GameObject score;
 
-    void Start()
-    {
-        // desactivar
-       //score.gameObject.SetActive(false);
+    public int scoreCounter;
 
-       score.GetComponent<TextMeshProUGUI>().text = "score: 100";
+    void Start()
+    {              
+
     }
 
     void Update()
     {
-        
+
+       //poner scoreCounter en el TMP
+       score.GetComponent<TextMeshProUGUI>().text = scoreCounter.ToString();        
     }
 }
