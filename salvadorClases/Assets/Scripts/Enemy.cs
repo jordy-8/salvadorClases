@@ -20,6 +20,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Move();
+    }
+
+    void Move()
+    {
         //this.GetComponent<Transform>().position += new Vector3(0, 1, 0);        
 
         //transform.position = Vector3.MoveTowards(transform.position, target.position, step);
@@ -38,7 +43,15 @@ public class Enemy : MonoBehaviour
             //cambiar de target / waypoint1
             target = waypoint1.transform.position;
         }
+    }
 
-
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("choco con " + col.gameObject.name);
+        if(col.gameObject.name == "personaje")
+        {
+            //hacer daño al jugador
+            col.GetComponent<Player>().TakeDamage(1);
+        }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {    
     float speed = 50;
+    int health = 10;
 
     void Start()
     {
@@ -58,6 +59,12 @@ public class Player : MonoBehaviour
     {
         Debug.Log("change speed");
         speed += _amount;
+    }
+
+    public void TakeDamage(int _amount)
+    {
+        health -= _amount;
+        Debug.Log("health= " + health);
     }
 
     
