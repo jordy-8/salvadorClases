@@ -8,9 +8,11 @@ public class Player : MonoBehaviour
     float speed = 50;
     int health = 10;
 
+    Rigidbody2D myRigidbody;
+
     void Start()
     {
-
+        myRigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -24,18 +26,24 @@ public class Player : MonoBehaviour
         // que se mueva a la derecha cuando aprieto la tecla d
         if(Input.GetKey("d"))
         {                    
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * Time.deltaTime, 0);            
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed * Time.deltaTime, 0);  
+            GetComponent<Animator>().ResetTrigger("Idle");                         
+            GetComponent<Animator>().SetTrigger("Walking");          
         }
         // que se mueva a la izquierda cuando aprieto la tecla a
         if(Input.GetKey("a"))
         {            
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed * Time.deltaTime, 0);            
+            myRigidbody.velocity = new Vector2(-speed * Time.deltaTime, 0);    
+            GetComponent<Animator>().ResetTrigger("Idle");                         
+            GetComponent<Animator>().SetTrigger("Walking");         
         }
         // que se deje de mover cuando suelto la tecla a
         if(Input.GetKeyUp("d") || Input.GetKeyUp("a"))
         //if((Input.GetKeyUp("d") || Input.GetKeyUp("a")) && !(Input.GetKey("d") || Input.GetKey("a")))
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+            myRigidbody.velocity = new Vector2(0,0);
+            GetComponent<Animator>().SetTrigger("Idle");
+            GetComponent<Animator>().ResetTrigger("Walking"); 
         }
     }
 
