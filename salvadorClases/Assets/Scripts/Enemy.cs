@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //hand = GameObject.Find("Hand");
+        waypoint1 = GameObject.Find("waypoint1");
         target = waypoint1.transform.position;
     }
 
@@ -28,17 +30,17 @@ public class Enemy : MonoBehaviour
         //this.GetComponent<Transform>().position += new Vector3(0, 1, 0);        
 
         //transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);        
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         // si ya llegó al waypoint1
-        if(transform.position == target)
+        if (transform.position == target)
         {
             //cambiar de target / waypoint
             target = waypoint2.transform.position;
         }
 
         // si ya llegó al waypoint2
-        if(transform.position == target)
+        if (transform.position == target)
         {
             //cambiar de target / waypoint1
             target = waypoint1.transform.position;
@@ -48,7 +50,7 @@ public class Enemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("choco con " + col.gameObject.name);
-        if(col.gameObject.name == "personaje")
+        if (col.gameObject.name == "personaje" || col.gameObject.name == "personaje2")
         {
             //hacer daño al jugador
             col.GetComponent<Player>().TakeDamage(1);
